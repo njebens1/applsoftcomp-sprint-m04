@@ -1,4 +1,4 @@
-# Sprint M05 — Semantic Axes
+# Sprint M04 — Semantic Axes
 
 Build a **semantic map**: pick terms, design two semantic axes from opposing word sets, produce one publication-quality 2D scatterplot.
 
@@ -37,10 +37,10 @@ Axes should capture different, ideally orthogonal aspects — redundant axes was
 
 Plot each term at `(axis1, axis2)`. Encode categorical/ordinal attributes with **color** and **shape**. Follow data-viz principles:
 
-- **Clarity:** readable symbols/text and no overlapping labels. Redundantly encode with shape
-- **Colorblind-friendly:** No green and red colors in the same plot.
-- **Pre-attentive attention:** use color/size/position to pull the eye to your story.
-- **Gestalt:** proximity, similarity; zero lines, quadrant annotations, text anchors help.
+- Clarity: readable symbols/text and no overlapping labels. Redundantly encode with shape
+- Colorblind-friendly: No green and red colors in the same plot.
+- Pre-attentive attention: use color/size/position to pull the eye to your story.
+- Gestalt: proximity, similarity; zero lines, quadrant annotations, text anchors help.
 
 ### 3. Observations
 
@@ -54,11 +54,11 @@ Plot each term at `(axis1, axis2)`. Encode categorical/ordinal attributes with *
 
 Your repo must have:
 
-- **Code** for the figure (marimo / Jupyter / `.py`).
-- **Reproducible pipeline** — `run.sh` / Makefile / Snakemake that regenerates the figure from scratch.
-- **Raw data** (CSV in `data/`).
-- **Final figure** (PNG/PDF in `figs/` folder).
-- **Observations** inline or in `NOTE.md` in the project root.
+- Code for the figure (marimo / Jupyter / `.py`).
+- Reproducible pipeline — `run.sh` / Makefile / Snakemake that regenerates the figure from scratch.
+- Raw data (CSV in `data/`).
+- Final figure (PNG/PDF in `figs/` folder).
+- Observations inline or in `NOTE.md` in the project root.
 
 Submit by pushing to github and posting the URL to Brightspace.
 
@@ -66,11 +66,11 @@ Submit by pushing to github and posting the URL to Brightspace.
 
 | Criterion | What we look for |
 |---|---|
-| **Atomic git history** | Small focused commits, meaningful messages. Not `final`, `final2`, `final-real`. |
-| **Reproducible pipeline** | `bash run.sh` regenerates data + figure on a fresh clone (or Snakefile or Makefile). No manual steps. |
-| **Documentation** | Explains *why* each axis and *what* the figure shows. |
-| **Viz quality** | Clear, separated, colorblind-friendly, deliberate. |
-| **Task completion** | Two axes, one scatterplot, observations — all present. |
+| Atomic git history | Small focused commits, meaningful messages. Not `final`, `final2`, `final-real`. |
+| Reproducible pipeline | `bash run.sh` regenerates data + figure on a fresh clone (or Snakefile or Makefile). No manual steps. |
+| Documentation | Explains *why* each axis and *what* the figure shows. |
+| Viz quality | Clear, separated, colorblind-friendly, deliberate. |
+| Task completion | Two axes, one scatterplot, observations — all present. |
 
 ## FAQ
 

@@ -449,33 +449,10 @@ def _(mo):
     mo.md(r"""
     ### Step 2 — Visualize
 
-    The scatter below is an **interactive Altair chart** — hover to see
-    each city's scores, and drag / scroll to pan and zoom.
-
-    A few data-viz principles you should also apply in your own submission:
-
-    - **Colorblind-safe palette** (Okabe–Ito) for the region encoding.
-    - **Axis labels are the pole words**, not `x` / `y`. The reader should
-      be able to interpret the plot without reading extra text.
-    - **Tooltips** let you inspect outliers without cluttering the chart
-      with permanent labels. For a static deliverable, annotate only the
-      most instructive points.
-
-    The dropdown below lets you **recolor the scatter** by a different
-    attribute. Same geometry, different story. The palette is chosen to
-    match the column's type — a rule worth internalizing:
-
-    - `region` — **categorical** → Okabe–Ito qualitative palette.
-    - `business_activity` — **ordinal** GaWC rating (Alpha++ →
-      Sufficiency) → sequential **viridis**, sorted along the rating.
-    - `population` — **quantitative sequential** (log-spaced) →
-      sequential **viridis**.
-    - `latitude` — **quantitative diverging** around the equator →
-      **red–blue** diverging scale with zero at the midpoint.
-
-    Swapping the color encoding is a cheap way to check whether your
-    semantic axes are picking up something that *also* correlates with
-    a non-semantic attribute already in the data.
+    Hover for per-city details; drag / scroll to pan and zoom. The
+    dropdown recolors the scatter by a different attribute — a quick
+    way to see whether the semantic axes line up with something you
+    already knew about the cities.
     """)
     return
 
@@ -484,12 +461,12 @@ def _(mo):
 def _(mo):
     color_by = mo.ui.dropdown(
         options={
-            "region (categorical)":         "region",
-            "business_activity (ordinal)":  "business_activity",
-            "population (sequential, log)": "population",
-            "latitude (diverging at 0°)":   "lat",
+            "region":            "region",
+            "business activity": "business_activity",
+            "population":        "population",
+            "latitude":          "lat",
         },
-        value="region (categorical)",
+        value="region",
         label="Color by: ",
     )
     return (color_by,)
@@ -497,7 +474,6 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(alt, color_by, df_scored, mo):
-    # Okabe–Ito palette — categorical, colorblind-safe.
     REGION_COLORS = {
         "Africa":   "#009E73",
         "Americas": "#0072B2",
@@ -505,8 +481,6 @@ def _(alt, color_by, df_scored, mo):
         "Europe":   "#E69F00",
         "Oceania":  "#56B4E9",
     }
-
-    # GaWC rating ordered from "most globally connected" to "least".
     BUSINESS_ORDER = [
         "Alpha++", "Alpha+", "Alpha", "Alpha-",
         "Beta+", "Beta", "Beta-",
@@ -515,7 +489,6 @@ def _(alt, color_by, df_scored, mo):
     ]
 
     if color_by.value == "region":
-        # Categorical → qualitative palette.
         _color = alt.Color(
             "region:N",
             scale=alt.Scale(
@@ -525,7 +498,6 @@ def _(alt, color_by, df_scored, mo):
             legend=alt.Legend(title="Region"),
         )
     elif color_by.value == "business_activity":
-        # Ordinal → sequential palette, sorted along the order.
         _color = alt.Color(
             "business_activity:O",
             sort=BUSINESS_ORDER,
@@ -533,14 +505,12 @@ def _(alt, color_by, df_scored, mo):
             legend=alt.Legend(title="GaWC rating"),
         )
     elif color_by.value == "population":
-        # Quantitative, heavy-tailed → log-scaled sequential palette.
         _color = alt.Color(
             "population:Q",
-            scale=alt.Scale(scheme="viridis", type="log"),
-            legend=alt.Legend(title="Population (log)"),
+            scale=alt.Scale(scheme="viridis", type="quantile"),
+            legend=alt.Legend(title="Population (quantile)"),
         )
     else:  # lat
-        # Signed quantitative with meaningful midpoint → diverging palette.
         _color = alt.Color(
             "lat:Q",
             scale=alt.Scale(scheme="redblue", domainMid=0),

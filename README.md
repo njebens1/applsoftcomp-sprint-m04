@@ -7,7 +7,7 @@ Build a **semantic map**: pick terms, design two semantic axes from opposing wor
 
 ## To get started 
 
-1. Go [Molab notebook](https://molab.marimo.io/notebooks/nb_9zEp2dqxRbXDrrbQcieFDK). Or clone and open `assignment.py` with `uvx marimo edit --sandbox assignment.py`. This is a **worked example** on the universities dataset — not the deliverable.
+1. Go [Molab notebook](https://molab.marimo.io/notebooks/nb_9zEp2dqxRbXDrrbQcieFDK). Or clone and open `assignment.py` with `uvx marimo edit --sandbox assignment.py`. This is a **worked example** on the cities dataset — not the deliverable.
 2. Pick a case study, build your own pipeline.
 
 
